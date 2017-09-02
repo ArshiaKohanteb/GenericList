@@ -10,9 +10,11 @@ namespace GenericList
     {
         static void Main(string[] args)
         {
-
-
-
+            LinkedList<int> LinkedList = new LinkedList<int>();
+            LinkedList.AddData(2);
+            LinkedList.AddData(3);
+            Console.WriteLine(LinkedList.Head.Data);
+            Console.ReadKey();
         }
     }
 }
