@@ -13,8 +13,13 @@ namespace GenericList
             LinkedList<int> LinkedList = new LinkedList<int>();
             LinkedList.AddData(2);
             LinkedList.AddData(3);
-            Console.WriteLine(LinkedList.Head.Data);
+            LinkedList.AddData(4);
+            LinkedList.AddData(5);
+            //LinkedList.Print();
+            LinkedList.Remove(30);
+            LinkedList.Print();
             Console.ReadKey();
+            
         }
     }
 }

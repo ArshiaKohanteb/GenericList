@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GenericList
 {
-    class LinkedList<T>
+    class LinkedList<T> where T : IComparable<T>
     {
         public Node<T> Head;
 
@@ -36,6 +36,36 @@ namespace GenericList
                 }
             }
         }
-        
+        public void Print()
+        {
+            Node<T> traversalNode = Head;
+            while (traversalNode != null)
+            {
+                Console.WriteLine(traversalNode.Data);
+                traversalNode = traversalNode.NextNode;
+            }
+        }
+        public void Remove(T Delete)
+        {
+            bool Found = false;
+            Node<T> traversalNode = Head;
+            
+            while (Delete.CompareTo(traversalNode.Data) == -1 || Delete.CompareTo(traversalNode.Data) == 1)
+            {
+                traversalNode = traversalNode.NextNode;
+                Found = true;
+            }
+            if (Found == true)
+            {
+                traversalNode.NextNode = traversalNode.NextNode.NextNode;
+            }
+            if (Found == false)
+            {
+                Console.WriteLine("Character Not Found");
+            }
+        }
+
+
+
     }
 }
