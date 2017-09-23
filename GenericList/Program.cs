@@ -16,7 +16,7 @@ namespace GenericList
             LinkedList.AddData(4);
             LinkedList.AddData(5);
             //LinkedList.Print();
-            LinkedList.Remove(30);
+            LinkedList.Remove(3);
             LinkedList.Print();
             Console.ReadKey();
             

@@ -48,12 +48,19 @@ namespace GenericList
         public void Remove(T Delete)
         {
             bool Found = false;
+            
             Node<T> traversalNode = Head;
             
-            while (Delete.CompareTo(traversalNode.Data) == -1 || Delete.CompareTo(traversalNode.Data) == 1)
+            while (traversalNode.NextNode != null)
             {
+
+                if (Delete.CompareTo(traversalNode.NextNode.Data) == 0)
+                {
+                    Found = true;
+                    break;
+                }
                 traversalNode = traversalNode.NextNode;
-                Found = true;
+                
             }
             if (Found == true)
             {
