@@ -10,10 +10,12 @@ namespace DoubleLinkedList
     {
         public T Data;
         public CircularNode<T> NextNode;
+        public CircularNode<T> PreviousNode;
         public CircularNode(T data)
         {
             Data = data;
             NextNode = null;
+            PreviousNode = null;
         }
     }
 }
