@@ -33,6 +33,7 @@ namespace DoubleLinkedList
             if (Head == null)
             {
                 Head = new CircularNode<T>(value);
+                Tail = Head;
             }
             else
             {
@@ -49,6 +50,7 @@ namespace DoubleLinkedList
                         TraversalNode.NextNode = Head;
                     }
                     TraversalNode.NextNode = new CircularNode<T>(value);
+                    Tail = TraversalNode; 
                 }
             }
         }
@@ -56,30 +58,75 @@ namespace DoubleLinkedList
         {
             CircularNode<T> traversalNode = Head;
 
+            NodeDelete(Delete);
             bool Found = Contains(Delete);
 
-            if (Found == true)
+            if (Found)
             {
-                traversalNode = traversalNode.NextNode;
+                if (Delete.Equals(Head.Data))
+                {
+                    Head = Head.NextNode;
+                    traversalNode = traversalNode.NextNode;
+                }
+                else if(Delete.Equals(Tail.Data))
+                {
+                    traversalNode = Head;
+                }
+                else
+                {
+                    traversalNode = traversalNode.NextNode;
+                }
             }
         }
 
+        private CircularNode<T> NodeDelete(T value)
+        {
+            CircularNode<T> traversalNode = Head;
+            
+            bool Found = false;
+
+            while (traversalNode != null)
+            {
+
+                if (value.CompareTo(traversalNode.Data) == 0)
+                {
+                    Found = true;
+                    break;
+                }
+                else
+                {
+                    Found = false;
+                    traversalNode = traversalNode.NextNode;
+                }
+                
+            }
+            if (Found)
+                {
+                traversalNode = traversalNode.PreviousNode;
+                }
+
+            Console.WriteLine("Unable to Locate Character Selected");
+            return traversalNode;
+        }
         public bool Contains(T value)
         {
             CircularNode<T> traversalNode = Head;
 
-            while (traversalNode.NextNode != null)
+            while (traversalNode != null)
             {
 
                 if (value.CompareTo(traversalNode.Data) == 0)
                 {
                     return true;
                 }
-                
+                else
+                {
+                    traversalNode = traversalNode.NextNode;
+                }
 
             }
 
-            Console.WriteLine("Unable to Delete Character Selected");
+            Console.WriteLine("Unable to Locate Character Selected");
             return false;
         }
 

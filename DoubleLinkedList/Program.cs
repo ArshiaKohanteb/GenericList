@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 namespace DoubleLinkedList
 {
     class Program 
-    {
+    {/// <summary>
+     ///Work on  NodeDelete 
+     /// </summary>
+
         static void Main(string[] args)
         {
             CircularLinkedList<int> List = new CircularLinkedList<int>();
@@ -15,7 +18,7 @@ namespace DoubleLinkedList
             List.Add(2);
             List.Add(3);
             List.Print();
-            List.Remove(1);
+            List.Remove(3);
             List.Print();
             Console.ReadKey();
         }
