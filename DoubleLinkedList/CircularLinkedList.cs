@@ -9,21 +9,13 @@ namespace DoubleLinkedList
     class CircularLinkedList<T> where T : IComparable<T>
     {
         #region Properties
-        public CircularNode<T> Next
-        {
-            get;
-            set;
-        }
+        
         public CircularNode<T> Tail
         {
             get;
             set;
         }
-        public CircularNode<T> Previous
-        {
-            get;
-            set;
-        }
+        
         public T Value { get; set; }
         #endregion
         public CircularNode<T> Head;
@@ -37,28 +29,20 @@ namespace DoubleLinkedList
             }
             else
             {
-                CircularNode<T> TraversalNode = Head;
-                while (TraversalNode.NextNode != null)
-                {
-                    TraversalNode = TraversalNode.NextNode;
-                }
-                if (TraversalNode.NextNode == null)
-                {
-                    Previous = TraversalNode;
-                    if (Head != null)
-                    {
-                        TraversalNode.NextNode = Head;
-                    }
-                    TraversalNode.NextNode = new CircularNode<T>(value);
-                    Tail = TraversalNode; 
-                }
+                CircularNode<T> TraversalNode = Tail;
+                TraversalNode.NextNode = new CircularNode<T>(value);
+                Head.PreviousNode = TraversalNode.NextNode;
+                Tail = TraversalNode.NextNode;
+                Tail.PreviousNode = TraversalNode;
+                Tail.NextNode = Head;
+                
             }
         }
         public void Remove(T Delete)
         {
             CircularNode<T> traversalNode = Head;
 
-            NodeDelete(Delete);
+            
             bool Found = Contains(Delete);
 
             if (Found)
@@ -66,48 +50,26 @@ namespace DoubleLinkedList
                 if (Delete.Equals(Head.Data))
                 {
                     Head = Head.NextNode;
-                    traversalNode = traversalNode.NextNode;
+                    Head.PreviousNode = Tail;
                 }
                 else if(Delete.Equals(Tail.Data))
                 {
-                    traversalNode = Head;
+                    CircularNode<T> NewTail = Tail.PreviousNode; 
+                    Tail = null;
+                    Tail = NewTail;
+                    NewTail = null;
+                    Head.PreviousNode = Tail;
+                    Tail.NextNode = Head;
                 }
                 else
                 {
+                    traversalNode = null;
                     traversalNode = traversalNode.NextNode;
                 }
             }
         }
 
-        private CircularNode<T> NodeDelete(T value)
-        {
-            CircularNode<T> traversalNode = Head;
-            
-            bool Found = false;
-
-            while (traversalNode != null)
-            {
-
-                if (value.CompareTo(traversalNode.Data) == 0)
-                {
-                    Found = true;
-                    break;
-                }
-                else
-                {
-                    Found = false;
-                    traversalNode = traversalNode.NextNode;
-                }
-                
-            }
-            if (Found)
-                {
-                traversalNode = traversalNode.PreviousNode;
-                }
-
-            Console.WriteLine("Unable to Locate Character Selected");
-            return traversalNode;
-        }
+       
         public bool Contains(T value)
         {
             CircularNode<T> traversalNode = Head;
@@ -133,23 +95,24 @@ namespace DoubleLinkedList
         public void Print()
         {
             CircularNode<T> traversalNode = Head;
-            while (traversalNode != null)
+            while (traversalNode != Tail)
             {
                 Console.WriteLine(traversalNode.Data);
                 traversalNode = traversalNode.NextNode;
             }
+            Console.WriteLine(Tail.Data);
             Console.WriteLine(" ");
+
         }
         public CircularLinkedList()
         {
             Head = null;
-            Previous = null;
+            
         }
         public CircularLinkedList(T value)
         {
             Value = value;
-            Next = null;
-            Previous = null;
+            
         }
 
     }

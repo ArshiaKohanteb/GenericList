@@ -20,6 +20,10 @@ namespace DoubleLinkedList
             List.Print();
             List.Remove(3);
             List.Print();
+            List.Remove(2);
+            List.Print();
+            List.Remove(1);
+            List.Print();
             Console.ReadKey();
         }
     }
