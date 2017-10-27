@@ -104,6 +104,23 @@ namespace DoubleLinkedList
             Console.WriteLine(" ");
 
         }
+
+        public IEnumerable<CircularNode<T>> Nodes()
+        {
+            CircularNode<T> temp = Head;
+            if (temp == null) yield break;
+            yield return temp;
+            temp = temp.NextNode;
+
+            while(temp != null && temp != Head)
+            {
+                yield return temp;
+                temp = temp.NextNode;
+            }
+
+
+        }
+
         public CircularLinkedList()
         {
             Head = null;

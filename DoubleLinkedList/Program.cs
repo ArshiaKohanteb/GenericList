@@ -13,17 +13,18 @@ namespace DoubleLinkedList
 
         static void Main(string[] args)
         {
-            CircularLinkedList<int> List = new CircularLinkedList<int>();
-            List.Add(1);
-            List.Add(2);
-            List.Add(3);
-            List.Print();
-            List.Remove(3);
-            List.Print();
-            List.Remove(2);
-            List.Print();
-            List.Remove(1);
-            List.Print();
+            string[] words = { "Hi", "this", "is", "a", "sentence" };
+           
+            CircularLinkedList<string> List = new CircularLinkedList<string>();
+            List.Add("1");
+            List.Add("2");
+            List.Add("3");
+            
+            
+            foreach(CircularNode<string> node in List.Nodes())
+            {
+                Console.WriteLine(node.Data);
+            }
             Console.ReadKey();
         }
     }

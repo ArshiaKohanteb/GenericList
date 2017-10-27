@@ -36,12 +36,12 @@ namespace GenericList
                 }
             }
         }
-        public void Print()
+        public IEnumerable<Node<T>> Print()
         {
             Node<T> traversalNode = Head;
             while (traversalNode != null)
             {
-                Console.WriteLine(traversalNode.Data);
+                yield return traversalNode;
                 traversalNode = traversalNode.NextNode;
             }
         }

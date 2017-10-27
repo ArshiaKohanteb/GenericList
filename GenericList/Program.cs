@@ -15,8 +15,10 @@ namespace GenericList
             LinkedList.AddData(3);
             LinkedList.AddData(4);
             LinkedList.AddData(5);
-            LinkedList.Print();
-           
+            foreach (Node<int> node in LinkedList.Print())
+            {
+                Console.WriteLine(node.Data);
+            }
             Console.ReadKey();
             
         }
